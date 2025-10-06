@@ -17,7 +17,7 @@ namespace Gallery.Services
 
         public async Task<List<Photo>> GetPhotosAsync(int pageNumber)
         {
-            if (string.IsNullOrEmpty(ApiKey) || ApiKey == "ТВОЙ_КЛЮЧ_ДОСТУПА")
+            if (string.IsNullOrEmpty(ApiKey) || ApiKey == "yUuje4BD_ocPlme150LHenjGYjzTVisxohs9AYROQRI")
             {
                 Debug.WriteLine("ОШИБКА: API ключ для Unsplash не указан в UnsplashService.cs!");
                 return new List<Photo>();
