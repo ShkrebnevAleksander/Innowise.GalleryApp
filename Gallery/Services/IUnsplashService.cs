@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Gallery.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,5 +9,6 @@ namespace Gallery.Services
 {
     internal interface IUnsplashService
     {
+        Task<List<Photo>> GetPhotosAsync(int pageNumber);
     }
 }
