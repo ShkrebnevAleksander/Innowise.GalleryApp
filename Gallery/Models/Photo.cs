@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Gallery.Models
 {
-    internal class Photo
+    public class Photo
     {
         [JsonPropertyName("id")]
         public string Id { get; set; }
@@ -21,5 +21,10 @@ namespace Gallery.Models
         [JsonPropertyName("alt_description")]
         public string AltDescription { get; set; }
         public string DisplayDescription => string.IsNullOrWhiteSpace(Description) ? AltDescription : Description;
+        [JsonPropertyName("urls")]
+        public Urls Urls { get; set; } 
+
+        [JsonPropertyName("user")]
+        public User User { get; set; }
     }
 }

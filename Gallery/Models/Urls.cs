@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Gallery.Models
 {
-    internal class Urls
+    public class Urls
     {
         [JsonPropertyName("regular")]
         public string Regular {  get; set; }
