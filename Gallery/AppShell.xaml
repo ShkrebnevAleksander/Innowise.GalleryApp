@@ -3,12 +3,24 @@
     x:Class="Gallery.AppShell"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:local="clr-namespace:Gallery"
-    Title="Gallery">
+    xmlns:views="clr-namespace:Gallery.Views"
+    Shell.FlyoutBehavior="Disabled"
+    Shell.TabBarBackgroundColor="Black"
+    Shell.TabBarTitleColor="White">
 
-    <ShellContent
-        Title="Home"
-        ContentTemplate="{DataTemplate local:MainPage}"
-        Route="MainPage" />
+    <TabBar>
+        <ShellContent
+            Title="Gallery"
+            Icon="icon_home.png"
+
+            ContentTemplate="{DataTemplate views:GalleryPage}"
+            Route="GalleryPage"/>
+
+        <ShellContent
+            Title="Favorites"
+            Icon="icon_heart.png"
+            ContentTemplate="{DataTemplate views:FavoritesPage}"
+            Route="FavoritesPage"/>
+    </TabBar>
 
 </Shell>
