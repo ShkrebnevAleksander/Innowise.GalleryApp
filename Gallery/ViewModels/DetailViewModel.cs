@@ -1,12 +1,48 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
+using Gallery.Models;
+using Gallery.Services;
 
-namespace Gallery.ViewModels
+namespace Gallery.ViewModels;
+
+[QueryProperty(nameof(Photo), "Photo")]
+public partial class DetailViewModel : ObservableObject
 {
-    internal class DetailViewModel
+    private readonly IFavoritesService _favoritesService;
+
+    public DetailViewModel(IFavoritesService favoritesService)
     {
+        _favoritesService = favoritesService;
+    }
+
+    [ObservableProperty]
+    private Photo photo;
+
+    [ObservableProperty]
+    private bool isFavorite;
+
+    partial void OnPhotoChanged(Photo value)
+    {
+        if (value != null)
+        {
+            IsFavorite = _favoritesService.IsFavorite(value.Id);
+        }
+    }
+
+    [RelayCommand]
+    private void ToggleFavorite()
+    {
+        if (Photo is null) return;
+
+        if (IsFavorite)
+        {
+            _favoritesService.RemoveFromFavorites(Photo.Id);
+        }
+        else
+        {
+            _favoritesService.AddToFavorites(Photo.Id);
+        }
+
+        IsFavorite = !IsFavorite;
     }
 }
