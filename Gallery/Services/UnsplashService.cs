@@ -4,7 +4,7 @@ using System.Net.Http.Json;
 
 namespace Gallery.Services
 {
-    internal class UnsplashService : IUnsplashService
+    public class UnsplashService : IUnsplashService
     {
         private readonly HttpClient _httpClient;
         private const string ApiKey = "yUuje4BD_ocPlme150LHenjGYjzTVisxohs9AYROQRI";
@@ -17,7 +17,7 @@ namespace Gallery.Services
 
         public async Task<List<Photo>> GetPhotosAsync(int pageNumber)
         {
-            if (string.IsNullOrEmpty(ApiKey) || ApiKey == "yUuje4BD_ocPlme150LHenjGYjzTVisxohs9AYROQRI")
+            if (string.IsNullOrEmpty(ApiKey) )
             {
                 Debug.WriteLine("ОШИБКА: API ключ для Unsplash не указан в UnsplashService.cs!");
                 return new List<Photo>();
@@ -36,6 +36,21 @@ namespace Gallery.Services
                 Debug.WriteLine($"--> Ошибка при получении фото из Unsplash: {ex.Message}");
 
                 return new List<Photo>();
+            }
+        }
+        public async Task<Photo> GetPhotoByIdAsync(string photoId)
+        {
+            var url = $"https://api.unsplash.com/photos/{photoId}";
+
+            try
+            {
+                var photo = await _httpClient.GetFromJsonAsync<Photo>(url);
+                return photo;
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"--> Ошибка при получении фото по ID ({photoId}): {ex.Message}");
+                return null; 
             }
         }
     }

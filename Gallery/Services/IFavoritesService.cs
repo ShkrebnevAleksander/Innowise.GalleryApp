@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace Gallery.Services
 {
-    internal interface IFavoritesService
+    public interface IFavoritesService
     {
+        bool IsFavorite(string photoId);
+        void AddToFavorites(string photoId);
+        void RemoveFromFavorites(string photoId);
+        List<string> GetAllFavorites();
     }
 }

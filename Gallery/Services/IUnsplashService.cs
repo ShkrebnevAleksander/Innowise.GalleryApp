@@ -7,8 +7,9 @@ using System.Threading.Tasks;
 
 namespace Gallery.Services
 {
-    internal interface IUnsplashService
+    public interface IUnsplashService
     {
         Task<List<Photo>> GetPhotosAsync(int pageNumber);
+        Task<Photo> GetPhotoByIdAsync(string photoId);
     }
 }
